@@ -16,20 +16,8 @@ module.exports = {
         type: "template",
         payload: {
           template_type: "button",
-          text: `🤖 | These are the commands on Wie AI below.
-🔎 | Click every command to see the usage.`,
-          buttons: [
-            {
-              type: "web_url",
-              url: "https://www.facebook.com/kennethfranciscoaceberos",
-              title: "Contact Admin 1"
-            },
-            {
-              type: "web_url",
-              url: "https://www.facebook.com/wieginesalpocialechavez",
-              title: "Contact Admin 2"
-            }
-         ]
+          text: `🤖 | These are the commands of Nyamer below.
+🔎 | Click every command to see the usage.`
         }
       }
     });
