@@ -7,11 +7,22 @@ const getStarted = async (send) => send({
       payload: {
         template_type: "button",
         text: api.introduction,
-        buttons: [
+             buttons: [
           {
             type: "postback",
             title: "Commands",
             payload: "HELP"
+          },
+          {
+            type: "postback",
+            title: "About",
+            payload: "ABOUT"
+          },
+          {
+            type: "postback",
+            title: "Prefix",
+            payload: "PREFIX"
+          }
         ]
       }
 }});
