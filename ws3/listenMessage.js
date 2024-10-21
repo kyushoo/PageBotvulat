@@ -12,17 +12,6 @@ const getStarted = async (send) => send({
             type: "postback",
             title: "Commands",
             payload: "HELP"
-          },
-          {
-            type: "postback",
-            title: "About",
-            payload: "ABOUT"
-          },
-          {
-            type: "postback",
-            title: "Prefix",
-            payload: "PREFIX"
-          }
         ]
       }
 }});
