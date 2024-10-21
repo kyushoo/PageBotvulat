@@ -11,7 +11,7 @@ module.exports = {
 Example: ${api.prefix + name} what is love?`);
     send("Please wait... 🔎");
     try {
-    const gpt = await axios.get(`${api.api_josh}api/v2/gpt4`, {
+    const gpt = await axios.get(`${api.api_josh}/gpt4`, {
       params: {
         q: prompt,
         uid: event.sender.id
