@@ -1,3 +1,5 @@
+const axios = require("axios");
+const name = "ia" ;
 const Tesseract = require('tesseract.js');
 
 // Function to convert image to text
