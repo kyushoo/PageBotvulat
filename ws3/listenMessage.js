@@ -7,25 +7,16 @@ const getStarted = async (send) => send({
       payload: {
         template_type: "button",
         text: api.introduction,
-             buttons: [
+        buttons: [
           {
             type: "postback",
             title: "Commands",
             payload: "HELP"
-          },
-          {
-            type: "postback",
-            title: "About",
-            payload: "ABOUT"
-          },
-          {
-            type: "postback",
-            title: "Prefix",
-            payload: "PREFIX"
           }
         ]
       }
 }});
+
 const listenMessage = async (event, pageAccessToken) => {
   const senderID = event.sender.id;
   const message = event.message.text;
@@ -42,17 +33,15 @@ const listenMessage = async (event, pageAccessToken) => {
     .split(/\s+/)
     .map(arg => arg.trim()) : [],
     admin = api.admin.some(id => id === senderID);
-    switch (message.toLowerCase().trim()) {
-    case "prefix": {
-      return send(`Hello! My prefix is ${prefix}`);
-    }
+  
+  switch (message.toLowerCase().trim()) {
     default: {
       if (!message) return;
       if (["hi", "wie", "wieai", "wiegine", "get started"]
         .some(text => text === message.toLowerCase().trim())) {
          return getStarted(send);
       }
-      //command
+      // command handling
       if (message.toLowerCase().startsWith(prefix)) {
         if (api.commands.some(cmd => cmd === command)) {
           const commandJs = require(api.cmdLoc + `/${command}`);
@@ -83,7 +72,6 @@ const listenMessage = async (event, pageAccessToken) => {
                 content_type: "text",
                 title: "/help",
                 payload: "HELP"
-                //"image_url": "http://example.com/img/red.png"
               }
            ]
           });
@@ -102,22 +90,19 @@ const listenPostback = async (event, pageAccessToken) => {
     case "get_started": {
       return getStarted(send);
     }
-    case "prefix": {
-      return send(`Hello! My prefix is ${prefix}`);
-    }
     default: {
       const admin = api.admin.some(id => id === senderID);
       if (payload) {
-      if (api.commands.some(cmd => cmd === payload)) {
+        if (api.commands.some(cmd => cmd === payload)) {
           const commandJs = require(api.cmdLoc + `/${payload}`);
           if (commandJs.admin && !admin) return send("This command is for admins only.");
           await (commandJs.run || (() => {}))({
-          api,
-          event,
-          send,
-          admin
-        });
-      }
+            api,
+            event,
+            send,
+            admin
+          });
+        }
       } else return;
     }
   }
