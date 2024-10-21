@@ -1,4 +1,4 @@
-const { callGeminiAPI } = require('../utils/callGeminiAPI');
+const { callGeminiAPI } = require('utils/callGeminiAPI');
 module.exports = {
   name: 'gemini',
   description: 'Ask a question to the Gemini AI',
