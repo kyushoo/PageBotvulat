@@ -11,7 +11,7 @@ module.exports = {
 Example: ${api.prefix + name} what is love?`);
     send("Please wait... 🔎");
     try {
-    const gpt = await axios.get(`${api.api_josh}/api/gpt-4o`, {
+    const gpt = await axios.get(`${api.api_josh}/api/v3/gpt4`, {
       params: {
         q: prompt,
         uid: event.sender.id
@@ -19,9 +19,7 @@ Example: ${api.prefix + name} what is love?`);
     });
     if (!gpt || !gpt.data.status)
     throw new Error();
-    send(`${gpt.data.result}
-
-🤖 WieAI by Neth Aceberos`);
+    send(`${gpt.data.result}`);
     } catch(err){
       send(err.message || err);
       return;
